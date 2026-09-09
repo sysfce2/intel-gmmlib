@@ -477,7 +477,7 @@ uint32_t GMM_STDCALL GmmLib::GmmXe2_LPGCachePolicy::CachePolicyGetPATIndex(GMM_R
 
     if (pGmmLibContext->GetSkuTable().FtrAppTransientCaching && IsAppTransientEligible &&
         ((pResInfo && (!pResInfo->GetResFlags().Info.NotLockable || pResInfo->GetResFlags().Gpu.CameraCapture || pResInfo->GetResFlags().Info.XAdapter)) ||
-         (!pResInfo && (Usage == GMM_RESOURCE_USAGE_QUERY))))
+         (!pResInfo && ((Usage == GMM_RESOURCE_USAGE_QUERY) || (Usage == GMM_RESOURCE_USAGE_OCL_SYSTEM_MEMORY_BUFFER)))))
     {
         // If CpuCacheable, choose 1-way Coherent PatIdx
         if (IsCpuCacheable)
